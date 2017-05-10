@@ -129,7 +129,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
 @property (nullable, nonatomic, readonly) NSData *data;    ///< Image data.
 @property (nonatomic, readonly) YYImageType type;          ///< Image data type.
 @property (nonatomic, readonly) CGFloat scale;             ///< Image scale.
-@property (nonatomic, readonly) NSUInteger frameCount;     ///< Image frame count.
+@property (nonatomic, readonly) NSUInteger frameCount;     ///< Image frame count. 图片的帧数
 @property (nonatomic, readonly) NSUInteger loopCount;      ///< Image loop count, 0 means infinite.
 @property (nonatomic, readonly) NSUInteger width;          ///< Image canvas width.
 @property (nonatomic, readonly) NSUInteger height;         ///< Image canvas height.

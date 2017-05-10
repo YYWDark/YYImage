@@ -1062,11 +1062,12 @@ CGImageRef YYCGImageCreateCopyWithOrientation(CGImageRef imageRef, UIImageOrient
     return YYCGImageCreateAffineTransformCopy(imageRef, transform, destSize, destBitmapInfo);
 }
 
+//获取图片的类型
 YYImageType YYImageDetectType(CFDataRef data) {
     if (!data) return YYImageTypeUnknown;
     uint64_t length = CFDataGetLength(data);
     if (length < 16) return YYImageTypeUnknown;
-    
+    //获取字节数
     const char *bytes = (char *)CFDataGetBytePtr(data);
     
     uint32_t magic4 = *((uint32_t *)bytes);
@@ -1954,6 +1955,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
     
     if (!_source) {
         if (_finalized) {
+            //Create an image source reading from `data'
             _source = CGImageSourceCreateWithData((__bridge CFDataRef)_data, NULL);
         } else {
             _source = CGImageSourceCreateIncremental(NULL);
@@ -1963,7 +1965,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
         CGImageSourceUpdateData(_source, (__bridge CFDataRef)_data, _finalized);
     }
     if (!_source) return;
-    
+    //拿到图片的帧数
     _frameCount = CGImageSourceGetCount(_source);
     if (_frameCount == 0) return;
     
@@ -1997,7 +1999,7 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
         frame.hasAlpha = YES;
         frame.isFullSize = YES;
         [frames addObject:frame];
-        
+        //拿到第i帧图片的信息
         CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(_source, i, NULL);
         if (properties) {
             NSTimeInterval duration = 0;

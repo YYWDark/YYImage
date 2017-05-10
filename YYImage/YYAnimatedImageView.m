@@ -122,6 +122,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 
 @interface YYAnimatedImageView() {
     @package
+    
     UIImage <YYAnimatedImage> *_curAnimatedImage;
     
     dispatch_once_t _onceToken;
@@ -351,6 +352,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
             hasContentsRect = [((UIImage<YYAnimatedImage> *) newVisibleImage) respondsToSelector:@selector(animatedImageContentsRectAtIndex:)];
         }
     }
+    //是否完成animatedImageContentsRectAtIndex:
     if (!hasContentsRect && _curImageHasContentsRect) {
         if (!CGRectEqualToRect(self.layer.contentsRect, CGRectMake(0, 0, 1, 1)) ) {
             [CATransaction begin];
